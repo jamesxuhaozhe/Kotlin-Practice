@@ -26,5 +26,9 @@ class HelloWorld {
 
     fun max3(a: Int, b: Int) = if (a > b) a else b
 
-
+    fun whenMethod(a: Int): String =
+            when(a) {
+                1 -> "1"
+                else -> "2"
+            }
 }
