@@ -1,5 +1,7 @@
 package syntaxdemo
 
+import strings.join
+import strings.lastChar
 import java.io.BufferedReader
 import java.lang.NumberFormatException
 import java.util.*
@@ -51,6 +53,20 @@ fun main(args: Array<String>) {
     println(joinToStringV1(list2))
 
     println(joinToStringV1(list2, separator = "?"))
+
+    println("Kotlin".lastChar())
+
+    println(listOf("one", "two", "three").join(" "))
+
+    val view: View = Button()
+    view.click()
+
+    val stuff = "stuff"
+    println(stuff.lastChar)
+
+    val sb = StringBuilder("sb")
+    println(sb.lastChar)
+    sb.lastChar = '!'
 
 
 }
