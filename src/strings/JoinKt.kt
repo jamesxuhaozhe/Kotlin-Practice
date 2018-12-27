@@ -53,5 +53,5 @@ var StringBuilder.lastChar: Char
         this.setCharAt(length - 1, value)
     }
 
-
+infix fun Any.to(other: Any)= Pair(this, other)
 

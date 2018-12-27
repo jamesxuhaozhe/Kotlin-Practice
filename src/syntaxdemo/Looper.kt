@@ -13,6 +13,8 @@ fun main(args: Array<String>) {
         print(fizzBuzz(i))
     }
 
+    println(listOf(*args, "1"))
+
     val binaryReps = TreeMap<Char, String>()
     for (c in 'A'..'F') {
         binaryReps[c] = Integer.toBinaryString(c.toInt())
@@ -68,6 +70,17 @@ fun main(args: Array<String>) {
     println(sb.lastChar)
     sb.lastChar = '!'
 
+    val (number, name) = 1 to "one"
+
+    println("12.345-6.A".split("\\.|-".toRegex()))
+
+    println("12.345-6.A".split(".", "-"))
+
+    val path = "/Users/yole/kotlin-book/Chapter.doc"
+
+    parsePath(path)
+
+    parsePath1(path)
 
 }
 
@@ -141,5 +154,25 @@ fun <T> joinToStringV1(collection: Collection<T>, separator: String = ":", prefi
     result.append(postfix)
     return result.toString()
 }
+
+fun parsePath(path: String) {
+    val directory = path.substringBeforeLast("/")
+    val fullName = path.substringAfterLast("/")
+
+    val fileName = fullName.substringBeforeLast(".")
+    val extension = fullName.substringAfterLast(".")
+
+    println("$directory $fileName $extension")
+}
+
+fun parsePath1(path: String) {
+    val regex = """(.+)/(.+)\.(.+)""".toRegex()
+    val matchResult = regex.matchEntire(path)
+    if (matchResult != null) {
+        val (directory, filename, extension) = matchResult.destructured
+        println("$directory $filename $extension")
+    }
+}
+
 
 
