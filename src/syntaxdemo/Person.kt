@@ -25,7 +25,7 @@ class Demo {
 
         println(createRandomRectangle().isSquare)
 
-        println(eval1(Sum(Num(1), Num(2))))
+        println(eval1(Expr.Sum(Expr.Num(1), Expr.Num(2))))
 
     }
 }
@@ -97,26 +97,28 @@ fun mixOptimized(color1: Color1, color2: Color1) =
             else -> throw Exception("dirty color")
         }
 
-interface Expr
-class Num(val value: Int) : Expr
-class Sum(val left: Expr, val right: Expr) : Expr
+sealed class Expr {
+    class Num(val value: Int) : Expr()
+    class Sum(val left: Expr, val right: Expr) : Expr()
+}
+
 
 fun eval1(e: Expr): Int {
-    if (e is Num) {
-        val n = e as Num
+    if (e is Expr.Num) {
+        val n = e as Expr.Num
         return n.value
     }
-    if (e is Sum) {
+    if (e is Expr.Sum) {
         return eval1(e.right) + eval1(e.left)
     }
     throw IllegalArgumentException("Unkown expression")
 }
 
 fun eval2(e: Expr): Int {
-    if (e is Num) {
+    if (e is Expr.Num) {
         return e.value
     }
-    if (e is Sum) {
+    if (e is Expr.Sum) {
         return eval1(e.right) + eval1(e.left)
     }
     throw IllegalArgumentException("Unkown expression")
@@ -124,17 +126,16 @@ fun eval2(e: Expr): Int {
 
 fun evalWithLogging(e: Expr): Int =
     when(e) {
-        is Num -> {
+        is Expr.Num -> {
             println("num: ${e.value}")
             e.value
         }
-        is Sum -> {
+        is Expr.Sum -> {
             val left = evalWithLogging(e.left)
             val right = evalWithLogging(e.right)
             println("sum: $left + $right")
             left + right
         }
-        else -> throw Exception("unknown")
     }
 
 
