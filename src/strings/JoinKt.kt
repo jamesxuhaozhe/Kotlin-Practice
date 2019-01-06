@@ -24,6 +24,8 @@ fun getOperationCount(): Int = opCount
 
 fun String.lastChar(): Char = this.get(this.length -1)
 
+
+
 fun String.lastChar1(): Char {
     return this.get(this.length - 1)
 }
