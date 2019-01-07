@@ -1,6 +1,8 @@
 package syntaxdemo
 
+import java.io.File
 import java.util.*
+import kotlin.Comparator
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
 
@@ -73,5 +75,38 @@ class CountingSet<T>(val innerSet: MutableCollection<T> = HashSet<T>()) : Mutabl
     }
 }
 
+object Payroll {
+    val allEmployees = arrayListOf<Person>()
 
+    fun calculateSalary() {
+        for (person in allEmployees) {
+            //no-op
+        }
+    }
+}
 
+object helper {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        Payroll.allEmployees.add(Person("James"))
+        Payroll.allEmployees.add(Person("Adam"))
+        Payroll.calculateSalary()
+
+        val persons = listOf(Student("james", 1), Student("Adam", 2))
+        persons.sortedWith(Student.StudentComparator)
+    }
+}
+
+data class Student(val name: String, val id: Int) {
+    object StudentComparator : Comparator<Student> {
+        override fun compare(o1: Student, o2: Student): Int {
+            return o1.name.compareTo(o2.name)
+        }
+    }
+}
+
+object CaseInsensitiveFileComparator : Comparator<File> {
+    override fun compare(o1: File, o2: File): Int {
+        return o1.path.compareTo(o2.path, ignoreCase = true)
+    }
+}
