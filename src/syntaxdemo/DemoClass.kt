@@ -1,6 +1,8 @@
 package syntaxdemo
 
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 open class View {
     open fun click() = println("I am a view")
@@ -33,23 +35,43 @@ object Play {
 }
 
 class DelegatingCollection<T> : Collection<T> {
+    private val innerList = arrayListOf<T>()
     override val size: Int
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        get() = innerList.size
 
     override fun contains(element: T): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return innerList.contains(element)
     }
 
     override fun containsAll(elements: Collection<T>): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return innerList.containsAll(elements)
     }
 
     override fun isEmpty(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return innerList.isEmpty()
     }
 
     override fun iterator(): Iterator<T> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return innerList.iterator()
     }
 
 }
+
+class DelegatingCollection1<T>(val innerList: Collection<T> = ArrayList<T>()): Collection<T> by innerList {}
+
+class CountingSet<T>(val innerSet: MutableCollection<T> = HashSet<T>()) : MutableCollection<T> by innerSet {
+    var objectsAdded = 0
+
+    override fun add(element: T): Boolean {
+        objectsAdded++
+        return innerSet.add(element)
+    }
+
+    override fun addAll(elements: Collection<T>): Boolean {
+        objectsAdded += elements.size
+        return innerSet.addAll(elements)
+    }
+}
+
+
+
