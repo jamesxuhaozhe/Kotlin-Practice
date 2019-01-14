@@ -31,3 +31,13 @@ object Demo {
     }
 
 }
+
+data class Milk(val brand: String, val id: Int)
+
+object Demo1 {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val milks = arrayListOf(Milk("a", 1), Milk("b", 2), Milk("c", 3), Milk("d", 4))
+        println(milks.asSequence().map { it.id * it.id }.filter { it > 3 }.toList())
+    }
+}
