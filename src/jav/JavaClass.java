@@ -1,8 +1,11 @@
 package jav;
 
+import chapter5.Milk;
 import strings.StringFunctions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class JavaClass {
 
@@ -15,6 +18,9 @@ public class JavaClass {
 
         char c1 = StringFunctions.getLastChar("stuff");
         StringFunctions.setLastChar(new StringBuilder("sb"), '!');
+
+        List<Milk> milks = Arrays.asList(new Milk("james", 1), new Milk("hsfsdf", 3), new Milk("you", 6));
+
 
 
     }
