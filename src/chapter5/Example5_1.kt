@@ -1,5 +1,7 @@
 package chapter5
 
+import java.lang.StringBuilder
+
 data class House(val address: String, val price: Int)
 
 fun findTheMostExpensive(houses: Collection<House>) {
@@ -41,3 +43,28 @@ object Demo1 {
         println(milks.asSequence().map { it.id * it.id }.filter { it > 3 }.toList())
     }
 }
+
+fun getAlphabet() {
+    return with(StringBuilder()) {
+        for (letter in 'A'..'Z') {
+            append(letter)
+        }
+        toString()
+    }
+}
+
+fun getAlphabet2() {
+    val sb = StringBuilder()
+    return with(sb) {
+        append("a").toString()
+    }
+
+}
+
+fun getString() = with(StringBuilder()) {
+    append("abc").toString()
+}
+
+fun getString1() = StringBuilder().apply { append("abc") }.toString()
+
+fun getString2() = buildString { append("absfa") }
