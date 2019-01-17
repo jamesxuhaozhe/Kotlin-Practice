@@ -68,3 +68,26 @@ fun getString() = with(StringBuilder()) {
 fun getString1() = StringBuilder().apply { append("abc") }.toString()
 
 fun getString2() = buildString { append("absfa") }
+
+fun getResult(boolean: Boolean): String? = if (boolean) "" else null
+
+fun sendEmailTo(email: String) {
+    println(email)
+}
+
+object Mydemo {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        getResult(false)?.let { sendEmailTo(it) }
+
+        function1(null)
+    }
+}
+
+fun function1(name: String?) {
+    println(name?.length)
+
+    println(name?.length ?: 0)
+
+    name!!
+}
