@@ -91,3 +91,17 @@ fun function1(name: String?) {
 
     name!!
 }
+
+fun fail(): Nothing {
+    throw NullPointerException("you fail!")
+}
+
+interface Processer<T> {
+    fun process(): T
+}
+
+class UnitProcessor : Processer<Unit> {
+    override fun process() {
+        println("do process")
+    }
+}
