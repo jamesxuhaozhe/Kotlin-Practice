@@ -110,3 +110,35 @@ object CaseInsensitiveFileComparator : Comparator<File> {
         return o1.path.compareTo(o2.path, ignoreCase = true)
     }
 }
+
+class Point(val x: Int, val y:Int) {
+    operator fun plus(point: Point): Point {
+        return Point(x + point.x, y + point.y)
+    }
+
+    operator fun minus(point: Point): Point {
+        return Point(x - point.x, y - point.y)
+    }
+
+    operator fun times(i: Int): Point {
+        return Point(x * i, y * i)
+    }
+
+    operator fun div(i: Int): Point {
+        return Point((x / i).toInt(), (y / i).toInt())
+    }
+}
+
+object DemoClass1 {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val point = Point(1, 2)
+        val point2 = point.plus(Point(4, 5))
+
+        val point3 = point.times(4)
+
+        var point4 = Point(1, 5)
+        point4 += Point(4, 6)
+    }
+}
+
