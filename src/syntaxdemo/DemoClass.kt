@@ -139,6 +139,36 @@ object DemoClass1 {
 
         var point4 = Point(1, 5)
         point4 += Point(4, 6)
+
+        var point6: Point? = null
+        if (point6 != null) {
+            point6.y
+            point6.x
+        }
+    }
+}
+
+class MyClass(val number: Int, val number2: Int) {
+    private var point: Point? = null
+
+    private fun initPoint() {
+        point = Point(1, 2)
+    }
+
+    fun getPoint() {
+        initPoint()
+        if (point != null) {
+            point?.x
+            point?.y
+        }
+    }
+}
+
+class DemoClass(val number: String, val number1: Int) {
+
+    fun getPoint() {
+        val point: Point = Point(1, 2)
+
     }
 }
 
