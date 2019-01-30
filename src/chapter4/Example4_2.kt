@@ -147,5 +147,29 @@ class MyUser(val name: String) {
 val user2 = MyUser("Alice")
 
 
+class MyData(val name: String, val int: Int) {
+
+    fun getName1(): String? {
+        return name
+    }
+
+    fun getInt1(): Int? {
+        return int
+    }
+}
+
+
+object Democlass {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val data = MyData("11", 1)
+
+        val first = data.getName1()?.length?.toLong()!! * 60 * 1000
+        val second = data.getName1()?.length?.toLong()!!
+
+
+    }
+}
+
 
 
