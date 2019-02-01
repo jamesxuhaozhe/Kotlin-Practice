@@ -171,5 +171,19 @@ object Democlass {
     }
 }
 
+object demodemo {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        //testMethod(null)
+        testMethod("james")
+    }
+}
+
+fun testMethod(name: String?) {
+    name?:return
+
+    println(name)
+}
+
 
 
