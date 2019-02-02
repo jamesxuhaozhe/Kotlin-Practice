@@ -3,6 +3,7 @@ package chapter4
 import java.io.Serializable
 import java.util.jar.Attributes
 import javax.naming.Context
+import kotlin.random.Random
 
 // public
 // as a class element, meaning it can be seen everywhere
@@ -184,6 +185,18 @@ fun testMethod(name: String?) {
 
     println(name)
 }
+
+fun getRandomString(): String? {
+    val random = Random(10)
+    if (random.nextInt() % 2 == 0) {
+        return "ssss"
+    } else {
+        return null
+    }
+}
+
+
+
 
 
 
